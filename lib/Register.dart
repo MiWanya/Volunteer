@@ -69,19 +69,19 @@ class RegistrationPage extends StatelessWidget {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    final usersProvider = Provider.of<UsersProvider>(context, listen: false);
-
-                    final newUser = Users(
-                      lastName: lastNameController.text,
-                      firstName: firstNameController.text,
-                      middleName: middleNameController.text,
-                      city: cityController.text,
-                      username: usernameController.text,
-                      password: passwordController.text,
-                      admin: false,
-                    );
-
-                    usersProvider.addUser(newUser);
+                    // final usersProvider = Provider.of<AdminsProvider>(context, listen: false);
+                    //
+                    // final newUser = Admins(
+                    //   lastName: lastNameController.text,
+                    //   firstName: firstNameController.text,
+                    //   middleName: middleNameController.text,
+                    //   city: cityController.text,
+                    //   username: usernameController.text,
+                    //   password: passwordController.text,
+                    //   admin: false,
+                    // );
+                    //
+                    // usersProvider.addAdmin(newUser);
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Пользователь успешно зарегистрирован!')),

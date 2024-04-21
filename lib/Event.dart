@@ -20,29 +20,13 @@ Future<String> fetchPageContent(String url) async {
   }
 }
 
-
-// void main() {
-//   runApp(EventApp());
-// }
-//
-// class EventApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'События',
-//       theme: ThemeData(primarySwatch: Colors.blue),
-//       home: EventPage(user: currentUser),
-//     );
-//   }
-// }
-
 class EventPage extends StatefulWidget {
   @override
   _EventPageState createState() => _EventPageState();
 }
 
 class _EventPageState extends State<EventPage> {
-  bool _isLoading = true; // переменная для отслеживания состояния загрузки
+  bool _isLoading = true;
   List<String> id = [];
   List<String> name = [];
   List<String> categories = [];
@@ -50,7 +34,7 @@ class _EventPageState extends State<EventPage> {
   List<String> organization = [];
   List<String> location = [];
   List<String> imageLinks = [];
-  int i = 0; // начинать с 0 элементов
+  int i = 0;
 
   @override
   void initState() {
@@ -164,7 +148,8 @@ print("id: $id");
   Widget build(BuildContext context) {
     // Переключение между индикатором загрузки, сообщением о пустых данных и списком событий
     return Scaffold(
-      appBar: AppBar(title: Text('События')),
+      appBar: AppBar(title: Text('События', style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.amber,),
       body: _isLoading
           ? Center(child: CircularProgressIndicator()) // показать индикатор загрузки
           : i == 0
