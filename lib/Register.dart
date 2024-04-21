@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Users.dart';
-import 'UsersProvider.dart';
 
 class RegistrationPage extends StatelessWidget {
   final TextEditingController lastNameController = TextEditingController();
@@ -69,20 +68,6 @@ class RegistrationPage extends StatelessWidget {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // final usersProvider = Provider.of<AdminsProvider>(context, listen: false);
-                    //
-                    // final newUser = Admins(
-                    //   lastName: lastNameController.text,
-                    //   firstName: firstNameController.text,
-                    //   middleName: middleNameController.text,
-                    //   city: cityController.text,
-                    //   username: usernameController.text,
-                    //   password: passwordController.text,
-                    //   admin: false,
-                    // );
-                    //
-                    // usersProvider.addAdmin(newUser);
-
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Пользователь успешно зарегистрирован!')),
                     );
