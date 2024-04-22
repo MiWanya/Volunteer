@@ -103,10 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           String password = _additionalInfoController.text;
                           bool isValidPass = usersProvider.checkPassword(password);
                           if (isValidPass) {
-                            Navigator.pushAndRemoveUntil(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => AdminPage()),
-                                  (route) => false,
                             );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -118,10 +117,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       } else {
-                        Navigator.pushAndRemoveUntil(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => EventPage()),
-                              (route) => false,
                         );
                       }
                     }
