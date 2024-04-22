@@ -27,10 +27,11 @@ class _MyAppState extends State<MyApp> {
 
   getAdminsFromSheet() async {
     var raw = await http.get(
-        Uri.parse("https://script.google.com/macros/s/AKfycbxRVLUg9ZCYxAF-WalMi-jrcY8Ux2kP2kIKQrrjMx_dZhYoCyWQil9e9vX9gJ_Z1ZCqCQ/exec")
+        Uri.parse(
+            "https://script.google.com/macros/s/AKfycbxRVLUg9ZCYxAF-WalMi-jrcY8Ux2kP2kIKQrrjMx_dZhYoCyWQil9e9vX9gJ_Z1ZCqCQ/exec"
+        )
     );
     var jsonAdmins = convert.jsonDecode(raw.body);
-    print("THIS IS DECODE $jsonAdmins");
 
     jsonAdmins.forEach((element){
       print(element);
@@ -39,17 +40,18 @@ class _MyAppState extends State<MyApp> {
         firstName: element['Имя'].toString() ?? '',
         lastName: element['Фамилия'].toString() ?? '',
         middleName: element['Отчество'].toString() ?? '',
-        city: element['Город'].toString() ?? '',
       );
       _adminsList.add(admins);
-
-      print('${admins.firstName}');
     });
   }
 
   @override
   void initState() {
-    getAdminsFromSheet();
+    try{
+      getAdminsFromSheet();
+    } catch(e){
+      print(e);
+    }
     super.initState();
   }
 

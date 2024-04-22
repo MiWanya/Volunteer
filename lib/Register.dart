@@ -1,86 +1,133 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:volont/Admin_register_form.dart';
+import 'package:volont/controller.dart';
 import 'Users.dart';
 
-class RegistrationPage extends StatelessWidget {
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController middleNameController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class Register_page extends StatefulWidget {
+  const Register_page({super.key});
+
+  @override
+  State<Register_page> createState() => _Register_pageState();
+}
+
+class _Register_pageState extends State<Register_page> {
+
+  final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController middleNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  void _submitForm(){
+    if(_formKey.currentState?.validate() ?? false){
+      Admin_register_form admin_register_form = Admin_register_form(
+          firstNameController.text.toString(),
+          lastNameController.text.toString(),
+          middleNameController.text.toString(),
+          passwordController.text.toString()
+      );
+      FormController formController = FormController(
+          (String response) {
+            if(response==FormController.STATUS_SUCCESS){
+              _showSnackBar("Пользователь добавлен");
+            }else {
+              _showSnackBar("Ошибка при добавлении пользователя");
+            }
+          }
+      );
+
+      _showSnackBar("Пользователь добавлен!");
+      formController.submitForm(admin_register_form);
+    }
+  }
+
+  void _showSnackBar(String message){
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Регистрация'),
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TextField(
-                  controller: lastNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Фамилия',
+        appBar: AppBar(
+          title: const Text('Добавить админа', style: TextStyle(color: Colors.white),),
+          backgroundColor: Colors.blueAccent,
+        ),
+        key: _scaffoldKey,
+        body: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 100, horizontal: 25),
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    controller: firstNameController,
+                    validator: (value){
+                      if (value!.isEmpty){
+                        return "Введите имя";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Имя"
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: firstNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Имя',
+                  TextFormField(
+                    controller: lastNameController,
+                    validator: (value){
+                      if (value!.isEmpty){
+                        return "Введите фамилия";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Фамилия"
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: middleNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Отчество',
+                  TextFormField(
+                    controller: middleNameController,
+                    validator: (value){
+                      if (value!.isEmpty){
+                        return "Введите отчество";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Отчество"
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: cityController,
-                  decoration: InputDecoration(
-                    labelText: 'Город',
+                  TextFormField(
+                    controller: passwordController,
+                    validator: (value){
+                      if (value!.isEmpty){
+                        return "Введите пароль";
+                      } else {
+                        return null;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Пароль"
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: usernameController,
-                  decoration: InputDecoration(
-                    labelText: 'Имя пользователя',
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    labelText: 'Пароль',
-                  ),
-                  obscureText: true,
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Пользователь успешно зарегистрирован!')),
-                    );
-
-                    Navigator.pop(context);
-                  },
-                  child: Text('Зарегистрироваться'),
-                ),
-              ],
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    onPressed: () {
+                      _submitForm();
+                    },
+                    child: Text("Добавить пользоателя"),
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        )
     );
   }
 }

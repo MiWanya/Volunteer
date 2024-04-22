@@ -43,7 +43,7 @@ class _EventPageState extends State<EventPage> {
   }
 
   Future<void> loadData() async {
-
+    // String api = http.get(Uri.parse('https://script.google.com/macros/s/AKfycbwYNl2_Oz5aozz8bVvV7C8-iNSx22xvlYiVt9D7DvX-he3ph7zDvbERgysuebKSZijG7Q/exec')) as String;
     String url = 'https://dobro.ru/search?t=e&e%5Bsettlement%5D%5Btitle%5D=Краснодар&e%5Bsettlement%5D%5Bregion%5D=23&e%5Bsettlement%5D%5Blat%5D=45.040216&e%5Bsettlement%5D%5Blon%5D=38.975996&e%5Bsettlement%5D%5BcountryCode%5D=RU&e%5Bonline%5D=0'; // Замените на ваш URL
 
     try {

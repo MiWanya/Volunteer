@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'CreateEventScreen.dart';
 import 'Event.dart';
+import 'Register.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _AdminPageState extends State<AdminPage> with SingleTickerProviderStateMix
         controller: _tabController,
         children: [
           EventPage(),
-          CreateScreen(),
+          const CreateScreen(),
         ],
       ),
       bottomNavigationBar: TabBar(

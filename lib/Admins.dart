@@ -2,7 +2,6 @@ class Admins {
   String lastName;
   String firstName;
   String middleName;
-  String city;
   String password;
 
   Admins(
@@ -10,7 +9,6 @@ class Admins {
     required this.firstName,
     required this.lastName,
     required this.middleName,
-    required this.city,
     required this.password
   }
       );
@@ -19,7 +17,6 @@ class Admins {
       firstName: "${json['firstName']}",
       lastName: "${json['lastName']}",
       middleName: "${json['middleName']}",
-      city: "${json['city']}",
       password: "${json['password']}",
     );
   }
@@ -27,7 +24,6 @@ class Admins {
     "firstName": firstName,
     "lastName": lastName,
     "middleName": middleName,
-    "city": city,
     "password": password,
   };
 }
